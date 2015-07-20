@@ -4,7 +4,8 @@
 
 * Excel を読み込んでWebアプリにデータを登録
 * Webアプリには REST API がある前提（今回は Django REST Frameworkで開発されていて、認証に Token Authenticationを利用されている前提）
-
+* 汎用性を持った作りにすることが目標
+* 以下はDjango REST Framework の開発参考。
 
 ## 参考
 
