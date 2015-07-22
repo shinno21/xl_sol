@@ -22,6 +22,27 @@ AUTH_PREFIX = 'Token '
 AUTH_TOKEN = '3799dec4212f96d6aa9b03827c2d08325c2d1c20'
 AUTHORIZATION = AUTH_PREFIX + AUTH_TOKEN
 
+def create_or_update(row_dict):
+    # JSON エンコード
+    row_json = json.dumps(row_dict, separators=(',', ':'))
+    print(row_json)
+
+    # JSON をPOST して登録
+    # 更新
+    if row_dict[PK_COLUMN]:
+        print(URL + str(row_dict[PK_COLUMN]) + '/' )
+        r = http.request(HTTP_METHOD_PUT, URL + str(row_dict[PK_COLUMN])  + '/'  ,
+                headers={'Content-Type': CONTENT_TYPE,
+                        'Authorization': AUTHORIZATION},
+                body=row_json)
+    # 登録
+    else:
+        print(URL + str(row_dict[PK_COLUMN]) + '/' )
+        r = http.request(HTTP_METHOD_POST, URL,
+                headers={'Content-Type': CONTENT_TYPE,
+                        'Authorization': AUTHORIZATION},
+                body=row_json)
+    print(r.status, r.data)
 
 if __name__ == '__main__':
     # 既存のファイルをロード
@@ -43,24 +64,7 @@ if __name__ == '__main__':
         # 列単位ループ
         for col_num, col in enumerate(row):
             row_dict[COLUMNS[col_num]] = col.value
-        # JSON エンコード
-        row_json = json.dumps(row_dict, separators=(',', ':'))
-        print(row_json)
+        create_or_update(row_dict)
 
-        # JSON をPOST して登録
-        # 更新
-        if row_dict[PK_COLUMN]:
-            print(URL + str(row_dict[PK_COLUMN]) + '/' )
-            r = http.request(HTTP_METHOD_PUT, URL + str(row_dict[PK_COLUMN])  + '/'  ,
-                    headers={'Content-Type': CONTENT_TYPE,
-                            'Authorization': AUTHORIZATION},
-                    body=row_json)
-        # 削除
-        else:
-            r = http.request(HTTP_METHOD_POST, URL,
-                    headers={'Content-Type': CONTENT_TYPE,
-                            'Authorization': AUTHORIZATION},
-                    body=row_json)
-        # print(r.status, r.data)
-        print(r.status)
+        # print(r.status)
         row_dict = {}
