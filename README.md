@@ -7,7 +7,7 @@
 * 汎用性を持った作りにすることが目標
 * 以下はDjango REST Framework の開発参考。
 
-## 参考
+## Web API 参考(Django Rest Framework)
 
 http://www.django-rest-framework.org/api-guide/authentication/
 
