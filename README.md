@@ -43,6 +43,12 @@ http://www.django-rest-framework.org/api-guide/authentication/
 
 ### urls.py
 
+```
   url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+```                       
                        
-                       
+### 対象のViewSet
+
+```
+    authentication_classes = (TokenAuthentication, )
+```
