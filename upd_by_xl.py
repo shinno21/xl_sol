@@ -22,6 +22,10 @@ AUTH_PREFIX = 'Token '
 AUTH_TOKEN = '3799dec4212f96d6aa9b03827c2d08325c2d1c20'
 AUTHORIZATION = AUTH_PREFIX + AUTH_TOKEN
 
+# データ
+def get_data():
+    pass
+
 def create_or_update(row_dict):
     # JSON エンコード
     row_json = json.dumps(row_dict, separators=(',', ':'))
