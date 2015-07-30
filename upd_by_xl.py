@@ -22,7 +22,7 @@ AUTH_PREFIX = 'Token '
 AUTH_TOKEN = '3799dec4212f96d6aa9b03827c2d08325c2d1c20'
 AUTHORIZATION = AUTH_PREFIX + AUTH_TOKEN
 
-# データ
+# データ取得
 def get_data():
     pass
 
